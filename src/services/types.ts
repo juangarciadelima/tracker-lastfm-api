@@ -17,6 +17,29 @@ export type Image = {
   "#text": string;
 };
 
+type Tag = {
+  url: string;
+  name: string;
+};
+
+type Track = {
+  streamable: {
+    fulltrack: string;
+    "#text": string;
+  };
+  duration: number;
+  url: string;
+  name: string;
+  "@attr": {
+    rank: string;
+  };
+  artist: {
+    url: string;
+    name: string;
+    mbid: string;
+  };
+};
+
 export interface WeeklyChart {
   weeklyalbumchart: {
     album: Album[];
@@ -44,5 +67,25 @@ export interface UserInfo {
     country: string;
     url: string;
     type: string;
+  };
+}
+
+export interface AlbumInfo {
+  album: {
+    artist: string;
+    mbid: string;
+    tags: Tag[];
+    playcount: string;
+    image: Image[];
+    tracks: {
+      track: Track[];
+    };
+    url: string;
+    name: string;
+    listeners: string;
+    wiki: {
+      published: string;
+      summary: string;
+    };
   };
 }

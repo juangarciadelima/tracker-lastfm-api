@@ -1,6 +1,6 @@
 import { lastFMApi } from "../apis/last-fm.api";
 import { LastFMMethods } from "../constants/last-fm-methods.enum";
-import { UserInfo, WeeklyChart } from "./types";
+import { AlbumInfo, UserInfo, WeeklyChart } from "./types";
 
 class LastFMService {
   async getWeeklyChart(userName: string): Promise<WeeklyChart> {
@@ -23,6 +23,21 @@ class LastFMService {
     });
 
     return response.data as UserInfo;
+  }
+
+  async getAlbumInfo(
+    artistName: string,
+    albumName: string
+  ): Promise<AlbumInfo> {
+    const response = await lastFMApi.get("", {
+      params: {
+        method: LastFMMethods.GET_ALBUM_INFO,
+        artist: artistName,
+        album: albumName,
+      },
+    });
+
+    return response.data as AlbumInfo;
   }
 }
 
